@@ -77,6 +77,9 @@ plt.savefig(out_fn_1)
 
 # version 2: use pandas "read_csv" method
 
+# NOTE: I really should determin the "skiprows" dynamically, e.g. by first reading the
+# file line by line and seeing which line number has "END OF HEADER"
+
 vn_list = ['Pressure [dbar]', 'Depth [m]', 'Temperature [deg C]', 'Fluoresence', 'PAR',
     'Salinity', 'DO [ml/L]', 'DO [uM]', 'nrec']
 df = pd.read_csv(in_fn, skiprows=570, header=None, names=vn_list, delim_whitespace=True)

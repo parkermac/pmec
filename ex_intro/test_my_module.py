@@ -9,10 +9,10 @@ are very much like regular module.
 import sys, os
 
 # local imports
-pth = os.path.abspath('shared')
+pth = os.path.abspath('../shared')
 print('\nAdding the path:')
 print(pth + '\n') # the \n adds a line feed
-sys.path.append(os.path.abspath('shared'))
+sys.path.append(pth)
 import my_module as mymod
 from importlib import reload
 reload(mymod)

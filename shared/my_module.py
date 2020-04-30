@@ -5,6 +5,10 @@ Module of handy functions.
 # do imports first, available to all functions in the module
 import os, sys, shutil
 
+# this bit of magic lets us know where this program lives
+# and so allows us to find the name of the parent directory (pmec)
+shared_pth = os.path.dirname(os.path.realpath(__file__))
+
 # define one or more variables, available to all functions in the module,
 # even without passing it directly
 my_secret_number = 47
@@ -22,6 +26,12 @@ def make_dir(dirname, clean=False):
             os.mkdir(dirname)
         except OSError:
             pass # assume OSError was raised because directory already exists
+            
+def get_outdir():
+    # find the absolute path to the outpur directory
+    this_parent = shared_pth.split('/')[-2]
+    out_dir = os.path.abspath('../../' + this_parent + '_output/')
+    return  this_parent, out_dir
             
 def choose_item(indir, tag='', exclude_tag='', itext='** Choose item from list **'):
     """

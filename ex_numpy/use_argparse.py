@@ -14,7 +14,8 @@ run use_argparse -a 'hello' -b 6 -v True
 
 NOTE: it does not matter which order you pass the arguments in.
 
-NOTE: to pass a NEGATIVE NUMBER as an argument you have to enclose it in quotes, with a space before the minus sign:
+NOTE: to pass a NEGATIVE NUMBER as an argument you have to enclose it in quotes,
+with a space before the minus sign:
 run use_argparse -c " -108.77"
 
 """

@@ -30,7 +30,7 @@ def make_dir(dirname, clean=False):
 def get_outdir():
     # find the absolute path to the outpur directory
     this_parent = shared_pth.split('/')[-2]
-    out_dir = os.path.abspath('../../' + this_parent + '_output/')
+    out_dir = os.path.abspath('../../' + this_parent + '_output') + '/'
     return  this_parent, out_dir
             
 def choose_item(indir, tag='', exclude_tag='', itext='** Choose item from list **'):

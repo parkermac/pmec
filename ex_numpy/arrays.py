@@ -62,7 +62,7 @@ print('\nConcatenate two arrays')
 cc = np.concatenate((aa,aa), axis=1)
 print(cc)
 
-print('\nFlatten and array')
+print('\nFlatten an array')
 print(aa.flatten())
 
 print('\n Make a Boolean mask of aa >= 5')
@@ -76,7 +76,7 @@ print('Note that this returns just a 1-D arrray (flattened)')
 """
 Exercises to try on your own:
 
-What happens if you make a copy of a byt typing b = a,
+What happens if you make a copy of a by typing b = a,
 and then change an element in a by hand?  Does b change as well?
 Now try it again using the copy method b = a.copy() and see 
 what happens.
@@ -95,7 +95,7 @@ to convert the array to floats first before you can put a nan in.
 Then also try the method np.nanmean() on the array with a nan.
 
 Look around in other sub-modules using dir() and help():
-* np.random (quickly generate arrays random numbers, e.g. np.random.randn())
+* np.random (quickly generate arrays of random numbers, e.g. np.random.randn())
 * np.linalg (linear algebra stuff like the inverse of a matrix: np.linalg.inv())
 * np.ma (masked arrays)
 * scipy.stats (have to import scipy first)

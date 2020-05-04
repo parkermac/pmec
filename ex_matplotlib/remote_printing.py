@@ -1,14 +1,14 @@
 """
 A test of auto-detect of the environment to assist with plotting.
 
-Run from ipython, not ipython --pylab
+On fjord: run from ipython, not ipython --pylab
 
 """
 # imports
 import sys, os
 import numpy as np
 host = os.getenv('HOSTNAME')
-if host == None:
+if host == None: 
     save_fig = False
     print('Printing to screen')
 elif 'fjord' in host:
@@ -16,6 +16,9 @@ elif 'fjord' in host:
     import matplotlib as mpl
     mpl.use('Agg')
     save_fig = True
+else:
+    print('Do not know what to do!')
+    sys.exit()
 import matplotlib.pyplot as plt
 
 # local imports

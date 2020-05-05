@@ -1,14 +1,34 @@
 """
 A test of auto-detect of the environment to assist with plotting.
+What it does is to see if you are on your laptop
+- in which case it makes a screen plot,
+or if you are on fjord
+- in which case it saves the figure as a .png without showing
+it on the screen.
 
-On fjord: run from ipython, not ipython --pylab
+IMPORTANT:
+
+** On fjord: run from ipython, NOT ipython --pylab
+
+The reason is that when you do "--pylab" it sets the graphical backend,
+and for some reason the default on remote machines is not what we
+want for saving plots.
+
+In general when you work on the remote machine you ONLY save plots.
 
 """
 # imports
 import sys, os
 import numpy as np
+
+# this is the switch to sense what machine you are on automatically,
+# and then make suitable plotting choices
 host = os.getenv('HOSTNAME')
-if host == None: 
+if host == None:
+    # I'm unsure about the best test to use here.  This works on my mac
+    # but I have no idea about other machines.  One could also try other
+    # environmant variables like 'HOME' or 'USER' but these would have
+    # to be edited for each person. 
     save_fig = False
     print('Printing to screen')
 elif 'fjord' in host:
@@ -45,7 +65,7 @@ z = np.cos(8*r) + xx
 plt.close('all')
 fig = plt.figure()
 ax = fig.add_subplot(111)
-cs = ax.pcolormesh(XX, YY, z, cmap='rainbow')
+cs = ax.pcolormesh(XX, YY, z)
 fig.colorbar(cs)
 ax.axis('square')
 

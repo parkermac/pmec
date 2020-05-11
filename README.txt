@@ -9,4 +9,15 @@ This is code for the 2020 Effective Computing class.
 * shared is a directory for python modules that I write, such as my_module.py
 
 ==========================================================
+==========================================================
+
+OTHER DIRECTORIES:
+
+* ex_intro has code for getting started with python, including reading a text file
+
+* ex_numpy has code for using numpy to create and manipulate arrays, also using pickle and argparse
+
+* ex_matplotlib has code for making figures, inclusing manipulating text and colors
+
+* ex_pandas has code introducing pandas Series and DataFrames, and reading in other formats like .csv
 

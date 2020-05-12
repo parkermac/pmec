@@ -74,6 +74,10 @@ print(df.loc[datetime(2020,5,1):datetime(2020,5,3,12),['x1','color']])
 # make 2-day averages
 # df.resample('2D').mean()
 
+# save and re-load a DataFrame
+# df.to_pickle('test.p')
+# DF = pd.read_pickle('test.p')
+
 if True:
     # PLOTTING
     plt.close('all')

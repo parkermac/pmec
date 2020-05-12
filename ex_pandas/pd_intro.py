@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 
 # make some heterogenous data
 #
-# #tart by making the "index" that will be used to align all the
+# start by making the "index" that will be used to align all the
 # other data.  In this case we generate a sequence of times.
 t = pd.date_range(start='5/1/2020' , end='5/5/2020', freq='12H')
 # make other data vectors

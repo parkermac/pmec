@@ -10,7 +10,11 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 
 # make some heterogenous data
+#
+# #tart by making the "index" that will be used to align all the
+# other data.  In this case we generate a sequence of times.
 t = pd.date_range(start='5/1/2020' , end='5/5/2020', freq='12H')
+# make other data vectors
 N = len(t)
 x1 = np.arange(N) + np.random.randn(N)
 x2 = x1**2
@@ -20,13 +24,15 @@ for item in x1:
         c.append('red')
     else:
         c.append('green')
-        
+
+# then create the DataFrame and put the data in it
 df = pd.DataFrame(index=t)
 df['x1'] = x1
 df['x2'] = x2
 df['color'] = c
 df.index.name = 'date'
 
+# now we explore various operations on the DataFrame
 def sep():
     print('\n'+60*'-'+'\n')
 
@@ -62,6 +68,8 @@ print(df.loc[datetime(2020,5,1):datetime(2020,5,3,12),['x1','color']])
 
 # drop a column
 # df.drop(labels='x2',axis=1)
+# or try
+# del df['x2']
 
 # make 2-day averages
 # df.resample('2D').mean()

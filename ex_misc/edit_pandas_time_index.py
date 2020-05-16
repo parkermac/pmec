@@ -42,7 +42,7 @@ aa = df.index
 # and then convert it to Pacific time:
 # aa_pac = aa_utc.tz_convert('US/Pacific')
 
-# get the index as an array of datetimes, becasue you can't edit a
+# get the index as an array of datetimes, because you can't edit a
 # pandas index directly
 a = aa.to_pydatetime()
 

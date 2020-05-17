@@ -21,3 +21,5 @@ OTHER DIRECTORIES:
 
 * ex_pandas has code introducing pandas Series and DataFrames, and reading in other formats like .csv
 
+* ex_misc
+

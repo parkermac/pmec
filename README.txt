@@ -21,5 +21,5 @@ OTHER DIRECTORIES:
 
 * ex_pandas has code introducing pandas Series and DataFrames, and reading in other formats like .csv
 
-* ex_misc
+* ex_misc has code related to netCDF4, requests, scipy.io for MATLAB files, and parsing XML
 

@@ -43,7 +43,7 @@ import pandas as pd
 name = 'skagit'
 usgs_code = 12200500
 t0 = datetime(2020,5,1)
-t1 = datetime(2020,5,10)
+t1 = datetime(2020,5,12)
 # This gets USGS data for a past time period specfied by t0 to t1
 time_str = ('&startDT=' + t0.strftime('%Y-%m-%d')
     +'&endDT=' + t1.strftime('%Y-%m-%d'))

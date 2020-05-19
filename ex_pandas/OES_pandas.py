@@ -60,6 +60,7 @@ Can find out the dtype of each columns by running the command 'df.dtypes'
 # for i in range(0, len(df.columns)):
 #     df.iloc[:,i] = pd.to_numeric(df.iloc[:,i], errors='ignore')  # only works for last 3 columns
 
+# MacCready edit
 for vn in ['Int (Net)1','Int (Net)2','Int (Net)3','Int (Net)4','Int (Net)5',]:
     df[df[vn] == ' '] = np.nan
     df[vn] = pd.to_numeric(df[vn])

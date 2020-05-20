@@ -51,29 +51,22 @@ try:
 except OSError:
     pass # assume error was because the file did not exist
 
-# form the 
-if True:
+# form the URL string
+if False:
     # just get SSH
-    # url = ('https://ncss.hycom.org/thredds/ncss/GLBy0.08/'
-    #     +'expt_93.0/FMRC/GLBy0.08_930_FMRC_best.ncd'
-    #     + '?var=surf_el'
-    #     + '&north=53&south=39&west=229&east=239'
-    #     + '&time'+dstr
-    #     + '&addLatLon=true&accept=netcdf4')
+    url = ('https://ncss.hycom.org/thredds/ncss/GLBy0.08/'
+        +'expt_93.0/FMRC/GLBy0.08_930_FMRC_best.ncd'
+        + '?var=surf_el'
+        + '&north=53&south=39&west=229&east=239'
+        + '&time'+dstr
+        + '&addLatLon=true&accept=netcdf4')
+else:
+    # get more variables
     url = ('https://ncss.hycom.org/thredds/ncss/GLBy0.08/'
         +'expt_93.0/FMRC/GLBy0.08_930_FMRC_best.ncd'
         + '?var=surf_el,salinity,water_temp'
         + '&north=53&south=39&west=229&east=239'
         + '&time'+dstr
-        #+ '&vertCoord=1'
-        + '&addLatLon=true&accept=netcdf4')
-else:
-    # get all variables
-    url = ('https://ncss.hycom.org/thredds/ncss/GLBy0.08/'
-        + 'expt_93.0/FMRC/GLBy0.08_930_FMRC_best.ncd'
-        + '?var=surf_el,water_temp,salinity,water_u,water_v'
-        + '&north=53&south=39&west=229&east=239'
-        + '&time=' + dstr
         + '&addLatLon=true&accept=netcdf4')
 
 def get_time(fn):
@@ -144,7 +137,7 @@ ax.set_ylabel('Latitude')
 ax.set_title('HYCOM Surface Height [m] ' + dt.strftime('%Y-%m-%d'))
 
 ax = fig.add_subplot(132)
-cs = ax.pcolormesh(x, y, salt, cmap='Spectral_r',vmin=25)
+cs = ax.pcolormesh(x, y, salt, cmap='Spectral_r',vmin=30, vmax=33)
 mymod.dar(ax)
 fig.colorbar(cs)
 ax.set_xlabel('Longitude')

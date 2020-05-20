@@ -132,7 +132,7 @@ for e in root.findall(".//"):
     # NOTE: "." stands for the current element, and "//" stands for all subelements under "."
     # see: https://docs.python.org/3/library/xml.etree.elementtree.html#supported-xpath-syntax
     
-    if False:
+    if True:
         # if you make this section True it prints out the parts of each element
         # to the screen, a helpful tool sometimes
         print('\ntag = ' + e.tag)

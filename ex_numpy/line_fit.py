@@ -44,7 +44,7 @@ ci_mean = s_y * stats.t.ppf(1-ci_fac,N-1) / np.sqrt(N)
 ci_trend = s_eps * stats.t.ppf(1-ci_fac,N-2) / np.sqrt((N-1)*s_x*s_x)
 
 # Alternatively, fit the line using python tools
-BB = np.polyfit(x,y,1, full=True) # full not needed?
+BB = np.polyfit(x,y,1)
 dyydx_alt = BB[0] # slope
 yy0_alt = BB[1] # y-intercept
 # RESULT: these are identical to the y-intercept and slope

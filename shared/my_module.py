@@ -4,6 +4,7 @@ Module of handy functions.
 
 # do imports first, available to all functions in the module
 import os, sys, shutil
+import numpy as np
 
 # this bit of magic lets us know where this program lives
 # and so allows us to find the name of the parent directory (pmec)
@@ -28,7 +29,13 @@ def make_dir(dirname, clean=False):
             pass # assume OSError was raised because directory already exists
             
 def get_outdir():
-    # find the absolute path to the outpur directory
+    """
+    Find the absolute path to the output directory.
+    
+    ASSUMES we are working in a directory one below the main one,
+    e.g. we are in .../pmec/ex_misc and it will return:
+    ('pmec', '/Users/pm7/Documents/Classes/2020 Effective Computing/pmec_output/')
+    """
     this_parent = shared_pth.split('/')[-2]
     out_dir = os.path.abspath('../../' + this_parent + '_output') + '/'
     return  this_parent, out_dir
@@ -70,6 +77,14 @@ def square_my_number():
     """
     xx = my_secret_number**2
     return xx
+    
+def dar(ax):
+    """
+    Fixes the plot aspect ratio to be locally Cartesian.
+    """
+    yl = ax.get_ylim()
+    yav = (yl[0] + yl[1])/2
+    ax.set_aspect(1/np.sin(np.pi*yav/180))
 
 
 

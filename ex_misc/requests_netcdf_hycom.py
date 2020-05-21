@@ -34,6 +34,14 @@ import numpy as np
 from time import time
 import matplotlib.pyplot as plt
 
+# ====== User choices ======================================
+
+two_d_only = True # only get 2-D data (faster)
+
+chunking = False # use chunking for the download
+
+# ==========================================================
+
 # make sure the output directory exists
 junk, out_dir = mymod.get_outdir()
 mymod.make_dir(out_dir)
@@ -52,7 +60,7 @@ except OSError:
     pass # assume error was because the file did not exist
 
 # form the URL string
-if False:
+if two_d_only:
     # just get SSH
     url = ('https://ncss.hycom.org/thredds/ncss/GLBy0.08/'
         +'expt_93.0/FMRC/GLBy0.08_930_FMRC_best.ncd'
@@ -76,13 +84,7 @@ def get_time(fn):
     # "strftime" to get a formatted string FROM a datetime object
     ds = nc.Dataset(fn)
     # get time info for the forecast
-    t = ds['time'][0]
-    # Caution: often when we get variables out of a NetCDF object
-    # they are numpy "masked arrays" which are different than standard arrys
-    if isinstance(t, np.ma.MaskedArray):
-        th = t.data
-    else:
-        th = t
+    th = ds['time'][0]
     tu = ds['time'].units
     # e.g. tu is 'hours since 2018-11-20 12:00:00.000 UTC'
     # Warning: Brittle code below!
@@ -97,7 +99,7 @@ def get_time(fn):
 
 # get the data using requests.get()
 tt0 = time()
-if False:
+if chunking:
     # streaming, chunked version
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
@@ -110,8 +112,8 @@ else:
     r = requests.get(url)
     with open(out_fn,'wb') as f:
         f.write(r.content)
-        
 print('\nrequests.get took %0.1f seconds' % (time()-tt0))
+
 get_time(out_fn) # just checking
 
 # pull out some fields
@@ -120,34 +122,53 @@ x = ds['lon'][:]
 if x.max() > 180:
     x = x - 360 # convert to -180:180 format
 y = ds['lat'][:]
-eta = ds['surf_el'][0,:,:]
-salt = ds['salinity'][0,0,:,:]
-temp = ds['water_temp'][0,0,:,:]
+
+if two_d_only:
+    eta = ds['surf_el'][0,:,:]
+else:
+    eta = ds['surf_el'][0,:,:]
+    salt = ds['salinity'][0,0,:,:]
+    temp = ds['water_temp'][0,0,:,:]
 
 # PLOTTING
 plt.close('all')
-fig = plt.figure(figsize=(20,8))
 
-ax = fig.add_subplot(131)
-cs = ax.pcolormesh(x, y, eta - np.nanmean(eta), cmap='seismic')
-mymod.dar(ax)
-fig.colorbar(cs)
-ax.set_xlabel('Longitude')
-ax.set_ylabel('Latitude')
-ax.set_title('HYCOM Surface Height [m] ' + dt.strftime('%Y-%m-%d'))
+if two_d_only:
+    
+    fig = plt.figure(figsize=(7,8))
 
-ax = fig.add_subplot(132)
-cs = ax.pcolormesh(x, y, salt, cmap='Spectral_r',vmin=30, vmax=33)
-mymod.dar(ax)
-fig.colorbar(cs)
-ax.set_xlabel('Longitude')
-ax.set_title('Surface Salinity')
+    ax = fig.add_subplot(111)
+    cs = ax.pcolormesh(x, y, eta - np.nanmean(eta), cmap='seismic')
+    mymod.dar(ax)
+    fig.colorbar(cs)
+    ax.set_xlabel('Longitude')
+    ax.set_ylabel('Latitude')
+    ax.set_title('HYCOM Surface Height [m] ' + dt.strftime('%Y-%m-%d'))
+    
+else:
+    
+    fig = plt.figure(figsize=(20,8))
 
-ax = fig.add_subplot(133)
-cs = ax.pcolormesh(x, y, temp, cmap='viridis')
-mymod.dar(ax)
-fig.colorbar(cs)
-ax.set_xlabel('Longitude')
-ax.set_title('Surface Temperature')
+    ax = fig.add_subplot(131)
+    cs = ax.pcolormesh(x, y, eta - np.nanmean(eta), cmap='seismic')
+    mymod.dar(ax)
+    fig.colorbar(cs)
+    ax.set_xlabel('Longitude')
+    ax.set_ylabel('Latitude')
+    ax.set_title('HYCOM Surface Height [m] ' + dt.strftime('%Y-%m-%d'))
+
+    ax = fig.add_subplot(132)
+    cs = ax.pcolormesh(x, y, salt, cmap='Spectral_r',vmin=30, vmax=33)
+    mymod.dar(ax)
+    fig.colorbar(cs)
+    ax.set_xlabel('Longitude')
+    ax.set_title('Surface Salinity')
+
+    ax = fig.add_subplot(133)
+    cs = ax.pcolormesh(x, y, temp, cmap='viridis')
+    mymod.dar(ax)
+    fig.colorbar(cs)
+    ax.set_xlabel('Longitude')
+    ax.set_title('Surface Temperature')
 
 plt.show()

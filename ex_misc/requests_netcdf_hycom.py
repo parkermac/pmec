@@ -16,8 +16,6 @@ And a page about the access method we use here, including help on
 formatting the URL for the request:
 https://ncss.hycom.org/thredds/ncss/grid/GLBy0.08/latest/dataset.html
 
-This is also a good opportunity to explore the properties of numpy "masked arrays"
-which are often the result of reading fields from a NetCDF object.
 """
 
 # imports

@@ -66,7 +66,7 @@ print('\nanan[~mask].mean()')
 print(anan[~mask].mean())
 
 print(30*'-=')
-# you can get the separate parts using .dat and .mask
+# you can get the separate parts using .data and .mask
 print('\nam.data')
 print(am.data)
 #

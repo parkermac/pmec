@@ -51,6 +51,7 @@ ax.text(.5, .7, 'Rotated -30', fontsize=fs, transform = ax.transAxes,
 
 ax.text(.5, .5, r'LaTeX formatting: $\Delta\rho\ =\ 1.5\ [kg\ m^{-3}]$',
     fontsize=fs, ha='center', transform = ax.transAxes)
+# note the "r" at the start of the string.  This makes the LaTeX formatting work more reliably.
 
 ax.text(.5, .4, 'Color, Style, and Weight', fontsize=fs, transform = ax.transAxes,
     style='italic', weight='bold', color='darkmagenta', ha='center')
@@ -60,6 +61,10 @@ ax.text(.5, .3, 'Bounding Box Loud', fontsize=fs, transform = ax.transAxes,
     
 h = ax.text(.5, .2, 'Bounding Box Subtle', fontsize=fs, transform = ax.transAxes,
     ha='center', bbox=dict(facecolor='w', edgecolor='None', alpha=0.5))
+    
+ax.text(.5, .1, r'More LaTeX: $\bar S \ \overline{S} \ \frac{d}{dt} \int{S \ dV}$',
+    fontsize=fs, ha='center', transform = ax.transAxes)
+
     
 plt.show()
 

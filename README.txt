@@ -23,5 +23,3 @@ OTHER DIRECTORIES:
 
 * ex_misc has code related to netCDF4, requests, scipy.io for MATLAB files, and parsing XML
 
-Elizabeth added this line!!!???
-

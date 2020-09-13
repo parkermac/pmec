@@ -3,7 +3,7 @@ Here we write a numpy array or arrays to disk formatted as MATLAB
 .mat files, and then use the subprocess module to run matlab code on the file
 and save it. Then we read the new mat-file back into python.
 
-NOTE: becauae subprocess spawns a complately independent job you can start
+NOTE: becauae subprocess spawns a completely independent job you can start
 as many jobs as you like simlutaneously - or at least as many as you have cores
 available. To do this you should omit the stdout and stderr arguments
 passed to subprocess.run() because for some reason they make the calling
@@ -63,7 +63,7 @@ io.savemat(out_dir + fn1, {'a':a, 'b':b})
 func = "mat_worker(\'" + out_dir + "\',\'" + fn1 + "\',\'" + fn2 + "\')"
 # a tedious way to form the string: mat_worker('../../pmec_output/','mat_1.mat','mat_2.mat')
 #
-cmd = '/Applications/MATLAB_R2017a.app/bin/matlab'
+cmd = '/Applications/MATLAB_R2020a.app/bin/matlab'
 # for some reason I can't just use 'matlab'
 #
 run_cmd = [cmd, "-nodisplay", "-r", func, "&"]
